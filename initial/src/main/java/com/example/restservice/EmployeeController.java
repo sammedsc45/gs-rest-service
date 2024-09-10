@@ -1,8 +1,7 @@
 package com.example.restservice;
 
 import java.net.URI;
-import org.springframework.beans
-        .factory.annotation.Autowired;
+
 import org.springframework.http
         .ResponseEntity;
 import org.springframework.web.bind
@@ -21,19 +20,17 @@ import org.springframework.web.servlet
 // Import the above-defined classes
 // to use the properties of those
 // classes
-import com.example.restservice.Employees;
-import com.example.restservice.EmployeeDAO;
-import com.example.restservice.Employee;
+
 
 // Creating the REST controller
 @RestController
 @RequestMapping(path = "/employees")
 public class EmployeeController {
 
-    private final EmployeeDAO employeeDao;
+    private final EmployeeManager employeeManager;
 
-    public EmployeeController(EmployeeDAO employeeDao) {
-        this.employeeDao = employeeDao;
+    public EmployeeController(EmployeeManager employeeManager) {
+        this.employeeManager = employeeManager;
     }
 
     // Implementing a GET method
@@ -46,7 +43,7 @@ public class EmployeeController {
     public Employees getEmployees()
     {
 
-        return employeeDao
+        return employeeManager
                 .getAllEmployees();
     }
 
@@ -66,7 +63,7 @@ public class EmployeeController {
         // Creating an ID of an employee
         // from the number of employees
         Integer id
-                = employeeDao
+                = employeeManager
                 .getAllEmployees()
                 .getEmployeeList()
                 .size()
@@ -74,7 +71,7 @@ public class EmployeeController {
 
         employee.setId(id);
 
-        employeeDao
+        employeeManager
                 .addEmployee(employee);
 
         URI location

@@ -7,13 +7,13 @@ import org.springframework
 // Importing the employees class to
 // use the defined properties
 // in this class
-import com.example.restservice.Employees;
+
 
 @Repository
 
 // Class to create a list
 // of employees
-public class EmployeeDAO {
+public class EmployeeManager {
 
     private static Employees list
             = new Employees();
